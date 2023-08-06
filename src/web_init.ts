@@ -1,8 +1,8 @@
-import HeaderImg from './img/to-do-list.png'
-import InboxImg from './img/aside/inbox.svg'
-import CalendarDate from './img/aside/calendar-date.svg'
-import Calendar from './img/aside/calendar.svg'
-import Add from './img/aside/add.svg'
+import HeaderImg from './img/HeaderImg.png';
+import InboxImg from './img/aside/InboxImg.svg';
+import CalendarDate from './img/aside/CalendarDate.svg';
+import Calendar from './img/aside/Calendar.svg';
+import Add from './img/aside/add.svg';
 
 const content = document.querySelector('#content');
 
@@ -31,7 +31,7 @@ const createAsideMenu = function(){
     return aside;
 }
 
-const createSection = function(){
+const createSection = function(): Element{
     const section = document.createElement('section');
     section.innerHTML = `<h2 id="section-title"></h2>
     <div id="section-content"></div>`;
@@ -39,7 +39,7 @@ const createSection = function(){
     return section;
 }
 
-const asideSectionContainer = function(){
+const asideSectionContainer = function(): Element{
     const container = document.createElement('div');
     container.id = 'content-container';
 
@@ -49,7 +49,7 @@ const asideSectionContainer = function(){
     return container;
 }
 
-const createFooter = function(){
+const createFooter = function(): Element{
     const footer = document.createElement('footer');
     footer.innerHTML = `<p>Created by StaryAlgida</p>`;
     
@@ -57,9 +57,11 @@ const createFooter = function(){
 }
 
 const webInit = function(){
-    content.appendChild(createHeader());
-    content.appendChild(asideSectionContainer());
-    content.appendChild(createFooter());
+    if(content){
+        content.appendChild(createHeader());
+        content.appendChild(asideSectionContainer());
+        content.appendChild(createFooter());
+    }
 }
 
 export default webInit;

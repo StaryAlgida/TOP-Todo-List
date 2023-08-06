@@ -5,13 +5,18 @@ module.exports = {
     errorDetails: true,
     children: true
  },
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
- module: {
+  module: {
    rules: [
+    {
+      test: /\.tsx?$/,
+      use: 'ts-loader',
+      exclude: /node_modules/,
+    },
      {
        test: /\.css$/i,
        use: ['style-loader', 'css-loader'],
@@ -26,4 +31,7 @@ module.exports = {
     },
    ],
  },
+ resolve: {
+  extensions: ['.tsx', '.ts', '.js'],
+},
 };
