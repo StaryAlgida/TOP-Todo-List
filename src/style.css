@@ -95,3 +95,36 @@ section{
 
     border-radius: 10px;
 }
+
+#todo-container{
+    margin-top: 10px;
+}
+
+#add-todo{
+    padding: 5px;
+}
+
+#add-todo-buttons{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    margin-top: 5px;
+}
+
+#add-todo-buttons button{
+    width: 85px;
+    border: none;
+
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+#add{
+    background-color: rgb(201, 255, 119);
+}
+
+#cencle{
+    margin-left: 5px;
+    background-color: rgb(255, 129, 129);
+}

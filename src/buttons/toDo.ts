@@ -1,23 +1,22 @@
-import Add from '../img/aside/add.svg';
 import clearSection from '../clearSection';
+import {renderToDo, renderAddTaskForm} from '../forms/renderToDo';
 
-function createTodoListner(): void{
+function createTodoListner():void{
     const button = document.querySelector("#to-do");
     
     if(button){
         button.addEventListener('click',()=>{
             clearSection();
             const title = document.querySelector("#section-title");
-            const contener = document.querySelector("#section-content");
+            const container = document.querySelector("#section-content");
 
-            if(title&&contener){
-                title.innerHTML = "To Do";
-                contener.innerHTML= `<div id="todo-container"><button id="add-button"><img src="${Add}" class="menu-img"> Add task</button></div>`
+            if(title&&container){
+                renderToDo(container, title);
                 
-                const addButton = document.querySelector("#todo-container");
+                const addButton = document.querySelector("#add-button");
                 
                 if(addButton){
-                    addButtonListner(addButton);
+                    addTaskListner(addButton);
                 }
             }
             
@@ -25,15 +24,33 @@ function createTodoListner(): void{
     }
 }
 
-
-function addButtonListner(button :Element) :void{
+function addTaskListner(button:Element):void{
     button.addEventListener('click',()=>{
-        console.log("ok");
-         const containier = document.querySelector("#todo-container");
-         if(containier)
-            containier.innerHTML=`<input type="text" autofocus>
-        <button id="add">Add</button>
-        <button id="cencle">Cencle</button>`;
+        const container = document.querySelector("#todo-container");
+        if(container){
+            
+            renderAddTaskForm(container);
+
+            const add = document.querySelector('#add');
+            const cencle = document.querySelector('#cencle');
+
+            if(add&&cencle){
+                cencleAdd(cencle);
+            }
+        }
+    });
+}
+
+function cencleAdd(button:Element):void{
+    button.addEventListener('click',()=>{
+        const container = document.querySelector("#section-content");
+        if(container){
+            renderToDo(container)
+            const addButton = document.querySelector("#add-button");    
+            if(addButton){
+                addTaskListner(addButton);
+            }
+        }
     });
 }
 
