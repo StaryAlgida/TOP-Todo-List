@@ -17,6 +17,10 @@ header{
     padding: 15px;
 }
 
+#menu{
+    font-size: 2.2rem;
+}
+
 #header-img{
     width: 100px;
 }
@@ -28,7 +32,7 @@ header{
 }
 
 aside{
-    padding-top: 40px;
+    padding-top: 25px;
     padding-left: 10px;
     background-color: aquamarine;
 }
@@ -51,6 +55,17 @@ aside ul li{
     display: flex;
     align-items: center;
     width: 175px;
+
+    border: none;
+    background-color: white;
+
+    transition: 0.3s;
+}
+
+.menu-button:hover{
+    background-color: rgb(230, 255, 184);
+
+    border-radius: 10px;
 }
 
 section{
@@ -60,3 +75,23 @@ section{
     padding-top: 40px;
 }
 
+#add-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 175px;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    border: none;
+    background-color: white;
+
+    transition: 0.3s;
+}
+
+#add-button:hover{
+    background-color: rgb(230, 255, 184);
+
+    border-radius: 10px;
+}

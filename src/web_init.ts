@@ -6,7 +6,7 @@ import Add from './img/aside/add.svg';
 
 const content = document.querySelector('#content');
 
-const createHeader = function (){
+const createHeader = function (): HTMLElement{
     const header = document.createElement('header');
     header.innerHTML = `
     <img src=${HeaderImg} id="header-img">
@@ -15,9 +15,10 @@ const createHeader = function (){
     return header;
 }
 
-const createAsideMenu = function(){
+const createAsideMenu = function(): HTMLElement{
     const aside = document.createElement('aside');
     aside.innerHTML = `
+    <h1 id="menu">Menu</h1>
     <ul>
         <li><button class="menu-button" id="to-do"><img class="menu-img" src="${InboxImg}"><span>To Do</span></button></li>
         <li><button class="menu-button" id="today"><img class="menu-img" src="${CalendarDate}"><span>Today</span></button></li>
@@ -31,7 +32,7 @@ const createAsideMenu = function(){
     return aside;
 }
 
-const createSection = function(): Element{
+const createSection = function(): HTMLElement{
     const section = document.createElement('section');
     section.innerHTML = `<h2 id="section-title"></h2>
     <div id="section-content"></div>`;
@@ -39,7 +40,7 @@ const createSection = function(): Element{
     return section;
 }
 
-const asideSectionContainer = function(): Element{
+const asideSectionContainer = function(): HTMLElement{
     const container = document.createElement('div');
     container.id = 'content-container';
 
@@ -49,14 +50,14 @@ const asideSectionContainer = function(): Element{
     return container;
 }
 
-const createFooter = function(): Element{
+const createFooter = function(): HTMLElement{
     const footer = document.createElement('footer');
     footer.innerHTML = `<p>Created by StaryAlgida</p>`;
     
     return footer; 
 }
 
-const webInit = function(){
+const webInit = function(): void{
     if(content){
         content.appendChild(createHeader());
         content.appendChild(asideSectionContainer());

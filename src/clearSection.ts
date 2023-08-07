@@ -1,4 +1,4 @@
-function clearSection(){
+function clearSection(): void{
     const tilte = document.querySelector("#section-title");
     const contener = document.querySelector("#section-content");
     
