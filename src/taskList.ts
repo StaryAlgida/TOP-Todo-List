@@ -12,7 +12,7 @@ interface TaskList{
 const ListOfTasks: TaskList = {
     list: [],
     setTask(task){
-        this.list.unshift(task);
+        this.list.push(task);
         console.log(this.list);
 
     },

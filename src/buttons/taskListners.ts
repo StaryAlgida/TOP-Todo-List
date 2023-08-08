@@ -13,4 +13,11 @@ function startEndListners(start:Element, end:Element, e:Task):void{
     }
 }
 
-export default startEndListners;
+function selectListener(select:HTMLSelectElement, task:Task):void{
+    select.addEventListener('change',(event)=>{
+        const selectedValue = (event.target as HTMLSelectElement).value;
+        task.setPiority(selectedValue);
+    });
+}
+
+export {startEndListners, selectListener};
