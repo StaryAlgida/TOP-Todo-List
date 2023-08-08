@@ -23,3 +23,5 @@ function createTask(id:number ,name:string, piority:string, done:boolean, dateSt
     }
     return taskObj;
 }
+
+export {createTask, Task};

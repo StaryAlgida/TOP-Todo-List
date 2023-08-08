@@ -1,5 +1,7 @@
 import clearSection from '../clearSection';
-import {renderToDo, renderAddTaskForm} from '../forms/renderToDo';
+import {renderToDo, renderAddTaskForm} from '../renders/renderToDo';
+import {createTask} from '../taskObj';
+import ListOfTasks from '../taskList';
 
 function createTodoListner():void{
     const button = document.querySelector("#to-do");
@@ -7,50 +9,43 @@ function createTodoListner():void{
     if(button){
         button.addEventListener('click',()=>{
             clearSection();
-            const title = document.querySelector("#section-title");
-            const container = document.querySelector("#section-content");
-
-            if(title&&container){
-                renderToDo(container, title);
-                
-                const addButton = document.querySelector("#add-button");
-                
-                if(addButton){
-                    addTaskListner(addButton);
-                }
-            }
-            
+            renderToDo(true, true);
+            addTaskListner();
         });
     }
 }
 
-function addTaskListner(button:Element):void{
-    button.addEventListener('click',()=>{
-        const container = document.querySelector("#todo-container");
-        if(container){
-            
-            renderAddTaskForm(container);
-
+function addTaskListner():void{
+    const button = document.querySelector("#add-button")
+    if(button)
+        button.addEventListener('click',()=>{
+            renderAddTaskForm();
             const add = document.querySelector('#add');
             const cencle = document.querySelector('#cencle');
-
             if(add&&cencle){
-                cencleAdd(cencle);
+                cencleButton(cencle);
+                addButton(add);
             }
+        });
+}
+
+function addButton(button:Element):void{
+    button.addEventListener('click',()=>{
+        const input = document.querySelector("#add-todo") as HTMLInputElement ;
+        const name = input.value;
+        if(name){
+            ListOfTasks.setTask(createTask(ListOfTasks.getSize(), name, 'low', false));
+            renderToDo(true, false);
+            addTaskListner();
         }
+            
     });
 }
 
-function cencleAdd(button:Element):void{
+function cencleButton(button:Element):void{
     button.addEventListener('click',()=>{
-        const container = document.querySelector("#section-content");
-        if(container){
-            renderToDo(container)
-            const addButton = document.querySelector("#add-button");    
-            if(addButton){
-                addTaskListner(addButton);
-            }
-        }
+        renderToDo(true, false);
+        addTaskListner();
     });
 }
 

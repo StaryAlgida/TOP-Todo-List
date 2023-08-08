@@ -97,6 +97,10 @@ section{
 }
 
 #todo-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
     margin-top: 10px;
 }
 
@@ -127,4 +131,10 @@ section{
 #cencle{
     margin-left: 5px;
     background-color: rgb(255, 129, 129);
+}
+
+.task{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
