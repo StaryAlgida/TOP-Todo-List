@@ -138,3 +138,12 @@ section{
     align-items: center;
     gap: 10px;
 }
+
+.done-button{
+    background-color: white;
+    border: none;
+}
+
+.done-button img{
+    width: 30px;
+}

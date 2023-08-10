@@ -9,6 +9,8 @@ interface Task{
     setPiority(piority:string):void;
     getPiority():string;
     getTaskName():string;
+    setDone(isDone:boolean):void;
+    getDone():boolean;
 }
 
 function createTask(id:number ,name:string, piority:string, done:boolean, dateStart?:string, dateEnd?:string):Task{
@@ -30,6 +32,12 @@ function createTask(id:number ,name:string, piority:string, done:boolean, dateSt
         },
         getTaskName(){
             return this.taskName
+        },
+        setDone(isDone){
+            this.done = isDone;
+        },
+        getDone(){
+            return this.done;
         }
     }
     return taskObj;

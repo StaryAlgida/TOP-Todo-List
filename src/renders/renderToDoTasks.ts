@@ -1,5 +1,7 @@
-import ListOfTasks from '../taskList'
 import Add from '../img/aside/add.svg';
+import doneFalse from '../img/doneFalse.svg';
+import doneTrue from '../img/doneTrue.svg';
+import ListOfTasks from '../taskList'
 import {startEndListners, selectListener} from '../buttons/taskListners';
 import { Task } from '../taskObj';
 
@@ -14,19 +16,25 @@ function renderToDos(numberOfTasks:number):void{
                     const div = document.createElement('div');
                     div.id = `${task.id}`;
                     div.classList.add('task');
-                    
+
                     const selectDiv = document.createElement('div');
                     selectDiv.classList.add('piority');
                     selectDiv.innerHTML = `<span>Piority:</span>`;
 
                     const doneButton = makeDoneButton(task);
-
                     const title = makeTitle(task);
                     const select = makeSelect(task);
-                    
-                    selectDiv.appendChild(doneButton)
-                    selectDiv.appendChild(title);
                     selectDiv.appendChild(select);
+
+                    const dateStartContainer = document.createElement('div');
+                    dateStartContainer.innerHTML = `Start:`;
+                    const dateEndContainer = document.createElement('div');
+                    dateEndContainer.innerHTML = `End:`;
+                    
+                    makeStart(task, dateStartContainer);
+                    makeEnd(task, dateEndContainer);
+                    // const dateStart = makeStart(task, dateStartContainer);
+                    // const dateEnd = makeEnd(task, dateEndContainer);
 
                     // const start = document.createElement('span');
                     // start.innerHTML=`Start: No date`;
@@ -42,7 +50,11 @@ function renderToDos(numberOfTasks:number):void{
 
                     // div.appendChild(start);
                     // div.appendChild(end);
+                    div.appendChild(doneButton);
+                    div.appendChild(title);
                     div.appendChild(selectDiv);
+                    div.appendChild(dateStartContainer);
+                    div.appendChild(dateEndContainer);
                     contener.appendChild(div);
                     
                 });
@@ -55,6 +67,24 @@ function renderToDos(numberOfTasks:number):void{
 
 function makeDoneButton(task:Task):Element{
     const doneButton = document.createElement('button');
+    doneButton.classList.add("done-button")
+    if(task.getDone()){
+        doneButton.innerHTML = `<img src=${doneTrue}>`;
+    }
+    else{
+        doneButton.innerHTML = `<img src=${doneFalse}>`;
+    }
+    
+    doneButton.addEventListener('click',()=>{
+        if(task.getDone()){
+            doneButton.innerHTML = `<img src=${doneFalse}>`
+            task.setDone(false);
+        }
+        else{
+            doneButton.innerHTML = `<img src=${doneTrue}>`
+            task.setDone(true);
+        }
+    })
 
     return doneButton;
 }
@@ -66,7 +96,6 @@ function makeTitle(task:Task):Element{
 }
 
 function makeSelect(task:Task):Element{
-    
     const select = document.createElement('select') as HTMLSelectElement;
     select.classList.add('piority');
     select.name = 'task-pioryty';
@@ -92,6 +121,60 @@ function makeSelect(task:Task):Element{
     return select
 }
 
+function makeStart(task:Task, contaner:Element):void{
+    const span = document.createElement('span');
+    contaner.innerHTML = `Start: `;
+    
+    if(task.dateStart){
+        span.innerHTML  = ` ${task.dateStart}`;
+    }
+    else{
+        span.innerHTML  = `No date`;
+    }
+    contaner.appendChild(span);
+
+    span.addEventListener('click',()=>{
+        const input = document.createElement('input') as HTMLInputElement;
+        input.type = 'date';
+        contaner.innerHTML = `Start: `;
+        contaner.appendChild(input);
+
+        input.addEventListener('change',()=>{
+            task.dateStart = `${input.value}`;
+            console.log(`Start: ${input.value}`);
+            
+            makeStart(task, contaner);
+        });
+    });
+
+}
+
+function makeEnd(task:Task, contaner:Element):void{
+    const span = document.createElement('span');
+    contaner.innerHTML = `End: `;
+    
+    if(task.dateEnd){
+        span.innerHTML  = ` ${task.dateEnd}`;
+    }
+    else{
+        span.innerHTML  = `No date`;
+    }
+    contaner.appendChild(span);
+
+    span.addEventListener('click',()=>{
+        const input = document.createElement('input') as HTMLInputElement;
+        input.type = 'date';
+        contaner.innerHTML = `End: `;
+        contaner.appendChild(input);
+
+        input.addEventListener('change',()=>{
+            task.dateEnd = `${input.value}`;
+            console.log(`Start: ${input.value}`);
+            
+            makeEnd(task, contaner);
+        });
+    });
+}
 
 //<input type="date" id="end"/>
 export default renderToDos;

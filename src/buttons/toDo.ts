@@ -34,7 +34,7 @@ function addButton(button:Element):void{
         const input = document.querySelector("#add-todo") as HTMLInputElement ;
         const name = input.value;
         if(name){
-            ListOfTasks.setTask(createTask(ListOfTasks.getSize(), name, 'low', false));
+            ListOfTasks.setTask(createTask(ListOfTasks.getSize(), name, 'low', false, undefined, undefined));
             renderToDo(true, false);
             addTaskListner();
         }
