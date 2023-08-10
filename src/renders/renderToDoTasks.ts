@@ -2,67 +2,51 @@ import Add from '../img/aside/add.svg';
 import doneFalse from '../img/doneFalse.svg';
 import doneTrue from '../img/doneTrue.svg';
 import ListOfTasks from '../taskList'
-import {startEndListners, selectListener} from '../buttons/taskListners';
+import {selectListener} from '../buttons/taskListners';
 import { Task } from '../taskObj';
 
 function renderToDos(numberOfTasks:number):void{
     const contener = document.querySelector('#todo-container');
-        if(contener){
-            contener.innerHTML =`<button id="add-button"><img src="${Add}" class="menu-img"> Add task</button>`;
+    if(contener){
+        contener.innerHTML =`<button id="add-button"><img src="${Add}" class="menu-img"> Add task</button>`;
         
-            if(numberOfTasks){
-                const list = ListOfTasks.getList();
-                list.forEach(task=>{
-                    const div = document.createElement('div');
-                    div.id = `${task.id}`;
-                    div.classList.add('task');
+        if(numberOfTasks){
+            const list = ListOfTasks.getList();
+            list.forEach(task=>{
+                const div = document.createElement('div');
+                div.id = `${task.id}`;
+                div.classList.add('task');
 
-                    const selectDiv = document.createElement('div');
-                    selectDiv.classList.add('piority');
-                    selectDiv.innerHTML = `<span>Piority:</span>`;
+                const selectDiv = document.createElement('div');
+                selectDiv.classList.add('piority');
+                selectDiv.innerHTML = `<span>Piority:</span>`;
 
-                    const doneButton = makeDoneButton(task);
-                    const title = makeTitle(task);
-                    const select = makeSelect(task);
-                    selectDiv.appendChild(select);
+                const doneButton = makeDoneButton(task);
+                const title = makeTitle(task);
+                const select = makeSelect(task);
+                selectDiv.appendChild(select);
 
-                    const dateStartContainer = document.createElement('div');
-                    dateStartContainer.innerHTML = `Start:`;
-                    const dateEndContainer = document.createElement('div');
-                    dateEndContainer.innerHTML = `End:`;
+                const dateStartContainer = document.createElement('div');
+                dateStartContainer.innerHTML = `Start:`;
+                const dateEndContainer = document.createElement('div');
+                dateEndContainer.innerHTML = `End:`;
                     
-                    makeStart(task, dateStartContainer);
-                    makeEnd(task, dateEndContainer);
-                    // const dateStart = makeStart(task, dateStartContainer);
-                    // const dateEnd = makeEnd(task, dateEndContainer);
+                makeStart(task, dateStartContainer);
+                makeEnd(task, dateEndContainer);
 
-                    // const start = document.createElement('span');
-                    // start.innerHTML=`Start: No date`;
-                    // start.classList.add('start-date');
-                    
-                    // const end = document.createElement('span')
-                    // end.innerHTML=`End: No date`;
-                    // end.classList.add('end-date');
+                const deleteButton = makeDelete(task.id);
 
-                    // startEndListners(start, end, task);
-
-                    
-
-                    // div.appendChild(start);
-                    // div.appendChild(end);
-                    div.appendChild(doneButton);
-                    div.appendChild(title);
-                    div.appendChild(selectDiv);
-                    div.appendChild(dateStartContainer);
-                    div.appendChild(dateEndContainer);
-                    contener.appendChild(div);
-                    
-                });
+                div.appendChild(doneButton);
+                div.appendChild(title);
+                div.appendChild(selectDiv);
+                div.appendChild(dateStartContainer);
+                div.appendChild(dateEndContainer);
+                div.appendChild(deleteButton);
+                contener.appendChild(div);    
+            });
                 
-            }
         }
-    
-    
+    } 
 }
 
 function makeDoneButton(task:Task):Element{
@@ -176,19 +160,18 @@ function makeEnd(task:Task, contaner:Element):void{
     });
 }
 
-//<input type="date" id="end"/>
+function makeDelete(id:number):Element{
+    const button = document.createElement('button');
+    button.innerHTML = `delete`;
+
+    button.addEventListener('click', ()=>{
+        const task = document.getElementById(`${id}`);
+        if(task)
+            task.remove();
+        ListOfTasks.remove(id);
+    });
+
+    return button;
+}
+
 export default renderToDos;
-
-
-
-// div.innerHTML = `
-//                     <button id="is-done-button">Done</button>
-//                     <h2>${task.taskName}</h2>
-//                     <div class="piority">
-//                         <span>Piority:</span>
-//                         <select class="piority" name="task-pioryty">
-//                             <option value="low" selected>low</option>
-//                             <option value="medium">medium</option>
-//                             <option value="hight">hight</option>
-//                         </select>
-//                     </div>`;
