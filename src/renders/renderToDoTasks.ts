@@ -1,6 +1,7 @@
 import Add from '../img/aside/add.svg';
 import doneFalse from '../img/doneFalse.svg';
 import doneTrue from '../img/doneTrue.svg';
+import Delete from '../img/delete.svg'
 import ListOfTasks from '../taskList'
 import {selectListener} from '../buttons/taskListners';
 import { Task } from '../taskObj';
@@ -27,12 +28,8 @@ function renderToDos(numberOfTasks:number):void{
                 selectDiv.appendChild(select);
 
                 const dateStartContainer = document.createElement('div');
-                dateStartContainer.innerHTML = `Start:`;
-                const dateEndContainer = document.createElement('div');
-                dateEndContainer.innerHTML = `End:`;
                     
                 makeStart(task, dateStartContainer);
-                makeEnd(task, dateEndContainer);
 
                 const deleteButton = makeDelete(task.id);
 
@@ -40,7 +37,6 @@ function renderToDos(numberOfTasks:number):void{
                 div.appendChild(title);
                 div.appendChild(selectDiv);
                 div.appendChild(dateStartContainer);
-                div.appendChild(dateEndContainer);
                 div.appendChild(deleteButton);
                 contener.appendChild(div);    
             });
@@ -107,7 +103,7 @@ function makeSelect(task:Task):Element{
 
 function makeStart(task:Task, contaner:Element):void{
     const span = document.createElement('span');
-    contaner.innerHTML = `Start: `;
+    contaner.innerHTML = `Date: `;
     
     if(task.dateStart){
         span.innerHTML  = ` ${task.dateStart}`;
@@ -120,7 +116,7 @@ function makeStart(task:Task, contaner:Element):void{
     span.addEventListener('click',()=>{
         const input = document.createElement('input') as HTMLInputElement;
         input.type = 'date';
-        contaner.innerHTML = `Start: `;
+        contaner.innerHTML = `Date: `;
         contaner.appendChild(input);
 
         input.addEventListener('change',()=>{
@@ -133,36 +129,10 @@ function makeStart(task:Task, contaner:Element):void{
 
 }
 
-function makeEnd(task:Task, contaner:Element):void{
-    const span = document.createElement('span');
-    contaner.innerHTML = `End: `;
-    
-    if(task.dateEnd){
-        span.innerHTML  = ` ${task.dateEnd}`;
-    }
-    else{
-        span.innerHTML  = `No date`;
-    }
-    contaner.appendChild(span);
-
-    span.addEventListener('click',()=>{
-        const input = document.createElement('input') as HTMLInputElement;
-        input.type = 'date';
-        contaner.innerHTML = `End: `;
-        contaner.appendChild(input);
-
-        input.addEventListener('change',()=>{
-            task.dateEnd = `${input.value}`;
-            console.log(`Start: ${input.value}`);
-            
-            makeEnd(task, contaner);
-        });
-    });
-}
-
 function makeDelete(id:number):Element{
     const button = document.createElement('button');
-    button.innerHTML = `delete`;
+    button.classList.add('done-button');
+    button.innerHTML = `<img src=${Delete}>`;
 
     button.addEventListener('click', ()=>{
         const task = document.getElementById(`${id}`);
