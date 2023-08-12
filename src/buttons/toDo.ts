@@ -9,7 +9,7 @@ function createTodoListner():void{
     if(button){
         button.addEventListener('click',()=>{
             clearSection();
-            renderToDo(true, true);
+            renderToDo(true, true, true);
             addTaskListner();
         });
     }
@@ -35,7 +35,7 @@ function addButton(button:Element):void{
         const name = input.value;
         if(name){
             ListOfTasks.setTask(createTask(ListOfTasks.getSize(), name, 'low', false, undefined, undefined));
-            renderToDo(true, false);
+            renderToDo(true, false, true);
             addTaskListner();
         }
             
@@ -44,7 +44,7 @@ function addButton(button:Element):void{
 
 function cencleButton(button:Element):void{
     button.addEventListener('click',()=>{
-        renderToDo(true, false);
+        renderToDo(true, false, true);
         addTaskListner();
     });
 }

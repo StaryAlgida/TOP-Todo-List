@@ -1,7 +1,7 @@
 import renderToDos from '../renders/renderToDoTasks'
 import ListOfTasks from '../taskList';
 
-function renderToDo(isContainer:boolean ,isTitle:boolean):void{
+function renderToDo(isContainer:boolean ,isTitle?:boolean, renderTasks?:boolean):void{
     const title = document.querySelector("#section-title");
     const container = document.querySelector("#section-content");
     if(title&&container){
@@ -9,6 +9,8 @@ function renderToDo(isContainer:boolean ,isTitle:boolean):void{
             title.innerHTML = "To Do";
         if(isContainer){
             container.innerHTML= `<div id="todo-container"></div>`
+        }
+        if(renderTasks){
             renderToDos(ListOfTasks.getSize());
         }
     }
