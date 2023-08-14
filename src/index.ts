@@ -1,14 +1,14 @@
 import './style.css';
 import webInit from './web_init';
-import createTodoListner from './buttons/toDo';
-import today from './buttons/today';
-import week from './buttons/week';
-
+import todo from './tabs/toDo/toDoTab';
+import todayTab from './tabs/today/todayTab';
+import thisWeekTab from './tabs/thisWeek/thisWeekTab';
 
 
 window.onload = () =>{
     webInit();
-    createTodoListner();
-    today();
-    week();
+    todo();
+    todayTab();
+    thisWeekTab();
+    // init buttons listners
 }

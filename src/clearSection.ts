@@ -1,11 +1,13 @@
-function clearSection(): void{
+function clearSectionTitle(): void{
     const tilte = document.querySelector("#section-title");
-    const contener = document.querySelector("#section-content");
-    
-    if (tilte && contener){
+    if (tilte)
         tilte.innerHTML = ` `;
-        contener.innerHTML = ` `;
-    }
 }
 
-export default clearSection;
+function clearSectionContent(){
+    const contener = document.querySelector("#section-content");
+    if(contener)
+        contener.innerHTML = ` `;
+}   
+
+export {clearSectionTitle, clearSectionContent};

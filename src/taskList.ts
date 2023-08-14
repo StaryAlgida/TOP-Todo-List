@@ -14,7 +14,7 @@ const ListOfTasks: TaskList = {
     setTask(task){
         this.list.push(task);
         console.log(this.list);
-
+        
     },
     remove(id){
         if(this.list.length > 1){
@@ -27,7 +27,6 @@ const ListOfTasks: TaskList = {
         }
         else
             this.list.pop();
-        
     },
     getList() {
         return this.list;

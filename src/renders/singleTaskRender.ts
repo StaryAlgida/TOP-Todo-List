@@ -1,40 +1,38 @@
 import { Task } from "../taskObj";
 import doneFalse from '../img/doneFalse.svg';
 import doneTrue from '../img/doneTrue.svg';
-import Delete from '../img/delete.svg'
+import Delete from '../img/delete.svg';
 import ListOfTasks from '../taskList'
-import {selectListener} from '../buttons/taskListners';
 
-function taskRender(task: Task){
+function taskRender(task: Task, container:Element){
     
-    const contener = document.querySelector('#todo-container');
-    if(contener){
-        const div = document.createElement('div');
-        div.id = `${task.id}`;
-        div.classList.add('task');
+    
+    const div = document.createElement('div');
+    div.id = `${task.id}`;
+    div.classList.add('task');
 
-        const selectDiv = document.createElement('div');
-        selectDiv.classList.add('piority');
-        selectDiv.innerHTML = `<span>Piority:</span>`;
+    const selectDiv = document.createElement('div');
+    selectDiv.classList.add('piority');
+    selectDiv.innerHTML = `<span>Piority:</span>`;
 
-        const doneButton = makeDoneButton(task);
-        const title = makeTitle(task);
-        const select = makeSelect(task);
-        selectDiv.appendChild(select);
+    const doneButton = makeDoneButton(task);
+    const title = makeTitle(task);
+    const select = makeSelect(task);
+    selectDiv.appendChild(select);
 
-        const dateStartContainer = document.createElement('div');
+    const dateStartContainer = document.createElement('div');
             
-        makeStart(task, dateStartContainer);
+    makeStart(task, dateStartContainer);
 
-        const deleteButton = makeDelete(task.id);
+    const deleteButton = makeDelete(task.id);
 
-        div.appendChild(doneButton);
-        div.appendChild(title);
-        div.appendChild(selectDiv);
-        div.appendChild(dateStartContainer);
-        div.appendChild(deleteButton);
-        contener.appendChild(div);
-    }
+    div.appendChild(doneButton);
+    div.appendChild(title);
+    div.appendChild(selectDiv);
+    div.appendChild(dateStartContainer);
+    div.appendChild(deleteButton);
+    container.appendChild(div);
+    
 }
 
 
@@ -137,5 +135,12 @@ function makeDelete(id:number):Element{
     return button;
 }
 
+
+function selectListener(select:HTMLSelectElement, task:Task):void{
+    select.addEventListener('change',(event)=>{
+        const selectedValue = (event.target as HTMLSelectElement).value;
+        task.setPiority(selectedValue);
+    });
+}
 
 export default taskRender;
