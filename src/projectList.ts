@@ -27,7 +27,7 @@ const ListOfProjects: ProjectList = {
         }
         else
             this.list.pop();
-        // console.log(`project list pop:${this.list}`);
+        console.log(`project list pop:${this.list}`);
         
     },
     getList() {
