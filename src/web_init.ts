@@ -26,7 +26,8 @@ const createAsideMenu = function(): HTMLElement{
     </ul>
     <h2>Project</h2>
     <ul id="projects-list">
-        <li><button class="menu-button" id="add-menu"><img class="menu-img" src="${Add}"><span>Add Project</span></button></li>
+        <li id="project"><button class="menu-button" id="add-project"><img class="menu-img" src="${Add}"><span>Add Project</span></button></li>
+        <li id="project-container"></li>
     </ul>`;
 
     return aside;

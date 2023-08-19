@@ -2,9 +2,9 @@ import { Task } from "../taskObj";
 import doneFalse from '../img/doneFalse.svg';
 import doneTrue from '../img/doneTrue.svg';
 import Delete from '../img/delete.svg';
-import ListOfTasks from '../taskList'
+import {ListOfTasks, TaskList} from '../taskList'
 
-function taskRender(task: Task, container:Element){
+function taskRender(task: Task, container:Element, list:TaskList){
     
     
     const div = document.createElement('div');
@@ -23,8 +23,8 @@ function taskRender(task: Task, container:Element){
     const dateStartContainer = document.createElement('div');
             
     makeStart(task, dateStartContainer);
-
-    const deleteButton = makeDelete(task.id);
+    
+    const deleteButton = makeDelete(task.id, list);
 
     div.appendChild(doneButton);
     div.appendChild(title);
@@ -120,16 +120,17 @@ function makeStart(task:Task, contaner:Element):void{
 
 }
 
-function makeDelete(id:number):Element{
+function makeDelete(id:number, list:TaskList):Element{
     const button = document.createElement('button');
     button.classList.add('done-button');
     button.innerHTML = `<img src=${Delete}>`;
 
     button.addEventListener('click', ()=>{
         const task = document.getElementById(`${id}`);
-        if(task)
+        if(task){
             task.remove();
-        ListOfTasks.remove(id);
+        }
+        list.remove(id);
     });
 
     return button;

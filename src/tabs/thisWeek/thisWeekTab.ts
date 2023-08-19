@@ -2,7 +2,7 @@ import {clearSectionTitle, clearSectionContent} from "../../clearSection";
 import taskRender from "../../renders/singleTaskRender";
 import tabTitle from "../../renders/tabTitle";
 import tasksContainer from "../../renders/tasksContainer";
-import ListOfTasks from "../../taskList";
+import {ListOfTasks} from "../../taskList";
 
 function thisWeekTab(){
     const button = document.querySelector('#week');
@@ -26,7 +26,7 @@ function showTasks(){
     list.forEach(task=>{
         if(task.dateStart)
             if(isDateInCurrentWeek(task.dateStart))
-                taskRender(task, taksContainer);
+                taskRender(task, taksContainer, ListOfTasks);
     });
 
     const contener = document.querySelector("#section-content");

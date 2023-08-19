@@ -1,7 +1,7 @@
 import tabTitle from "../../renders/tabTitle";
 import {addTaskButton, renderAddTaskForm} from "../../renders/addTaskButtonAndForm";
-import {clearSectionTitle, clearSectionContent} from "../../clearSection";
-import ListOfTasks from "../../taskList";
+import {clearSectionContent} from "../../clearSection";
+import {ListOfTasks} from "../../taskList";
 import {createTask} from '../../taskObj';
 import taskRender from "../../renders/singleTaskRender";
 import tasksContainer from "../../renders/tasksContainer";
@@ -16,25 +16,24 @@ function todo():void{
 
 function toDoListner(button:Element){
     button.addEventListener('click',()=>{
-        clearSectionTitle();
-        tabTitle('To Do');
         todoDefaultView();
+        tabTitle('To Do');
     });
 }
 
 function todoDefaultView(){
     clearSectionContent();
-    const contener = document.querySelector("#section-content");
-    if(contener){
-        const addTask:Element = addTaskButton();
+    const container = document.querySelector("#section-content");
+    if(container){
+        const addTask = addTaskButton();
         addTaskButtonListner(addTask);
         
         
         const taskContainer = tasksContainer();
         renderTasks(taskContainer);
 
-        contener.appendChild(addTask);
-        contener.appendChild(taskContainer);
+        container.appendChild(addTask);
+        container.appendChild(taskContainer);
 
     }
 }
@@ -71,7 +70,7 @@ function cencleButton(button:Element):void{
 function renderTasks(container:Element):void{
     const list = ListOfTasks.getList();
     list.forEach(task=>{
-        taskRender(task, container);
+        taskRender(task, container, ListOfTasks);
     });
 }
 

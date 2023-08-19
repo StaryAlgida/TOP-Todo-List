@@ -1,19 +1,20 @@
+import { TaskList } from './taskList';
 import {Task} from './taskObj'
 
-interface TaskList{
-    title?: string;
-    id?:number;
-    list: Task[];
-    setTask(task: Task):void;
+interface ProjectList{
+    list: TaskList[];
+    setProject(project: TaskList):void;
     remove(id: number):void;
-    getList():Task[];
+    getList():TaskList[];
     getSize():number;
 }
 
-const ListOfTasks: TaskList = {
+const ListOfProjects: ProjectList = {
     list: [],
-    setTask(task){
-        this.list.push(task);
+    setProject(project){
+        this.list.push(project);
+        console.log(this.list);
+        
     },
     remove(id){
         if(this.list.length > 1){
@@ -26,13 +27,15 @@ const ListOfTasks: TaskList = {
         }
         else
             this.list.pop();
+        // console.log(`project list pop:${this.list}`);
+        
     },
     getList() {
         return this.list;
     },
     getSize() {
         return this.list.length;
-    },
+    }
 };
 
-export {ListOfTasks, TaskList};
+export default ListOfProjects;
