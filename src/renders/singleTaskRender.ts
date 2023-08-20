@@ -2,7 +2,7 @@ import { Task } from "../taskObj";
 import doneFalse from '../img/doneFalse.svg';
 import doneTrue from '../img/doneTrue.svg';
 import Delete from '../img/delete.svg';
-import {ListOfTasks, TaskList} from '../taskList'
+import {TaskList} from '../taskList'
 
 function taskRender(task: Task, container:Element, list:TaskList){
     
@@ -17,7 +17,7 @@ function taskRender(task: Task, container:Element, list:TaskList){
 
     const doneButton = makeDoneButton(task);
     const title = makeTitle(task);
-    const select = makeSelect(task);
+    const select = makeSelect(task, div);
     selectDiv.appendChild(select);
 
     const dateStartContainer = document.createElement('div');
@@ -66,29 +66,32 @@ function makeTitle(task:Task):Element{
     return title;
 }
 
-function makeSelect(task:Task):Element{
+function makeSelect(task:Task, div:Element):Element{
     const select = document.createElement('select') as HTMLSelectElement;
     select.classList.add('piority');
     select.name = 'task-pioryty';
     if(task.piority === 'medium'){
+        div.className = `task medium`;
         select.innerHTML = `
         <option value="low">low</option>
         <option value="medium" selected>medium</option>
         <option value="hight">hight</option>`;
     }
     else if(task.piority === 'hight'){
+        div.className = `task hight`;
         select.innerHTML = `
         <option value="low">low</option>
         <option value="medium">medium</option>
         <option value="hight" selected>hight</option>`;
     }
     else{
+        div.className = `task low`;
         select.innerHTML = `
         <option value="low" selected>low</option>
         <option value="medium">medium</option>
         <option value="hight">hight</option>`;
     }
-    selectListener(select, task);
+    selectListener(select, task, div);
     return select
 }
 
@@ -137,10 +140,11 @@ function makeDelete(id:number, list:TaskList):Element{
 }
 
 
-function selectListener(select:HTMLSelectElement, task:Task):void{
+function selectListener(select:HTMLSelectElement, task:Task, div:Element):void{
     select.addEventListener('change',(event)=>{
         const selectedValue = (event.target as HTMLSelectElement).value;
         task.setPiority(selectedValue);
+        div.className = `task ${selectedValue}`;
     });
 }
 

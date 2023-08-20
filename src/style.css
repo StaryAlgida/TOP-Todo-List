@@ -34,7 +34,7 @@ header{
 aside{
     padding-top: 25px;
     padding-left: 10px;
-    background-color: aquamarine;
+    background-color: #d3d3d3;
 }
 
 .menu-img{
@@ -60,11 +60,13 @@ aside ul li{
     background-color: white;
 
     transition: 0.3s;
+
+    
 }
 
 .menu-button:hover{
-    background-color: rgb(230, 255, 184);
-
+    background-color: rgb(213, 255, 135);
+    box-shadow: -1px 12px 24px 0px rgba(66, 68, 90, 0.21);
     border-radius: 10px;
 }
 
@@ -136,6 +138,8 @@ section{
 .task{
     display: flex;
     align-items: center;
+    justify-content:space-between;
+    border-radius: 10px;
     gap: 10px;
 }
 
@@ -182,7 +186,38 @@ section{
 }
 
 .single-project-container:hover{
-    background-color: rgb(230, 255, 184);
-
+    background-color: rgb(213, 255, 135);
+    box-shadow: -1px 12px 24px 0px rgba(66, 68, 90, 0.21);
     border-radius: 10px;
+}
+
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#section-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.low{
+    background-color: hsla(84, 100%, 59%, 0.3);
+}
+
+.medium{
+    background-color: rgba(255, 255, 0, 0.3);
+}
+
+.hight{
+ background-color: rgba(255, 0, 0, 0.3);
+}
+
+#tasks-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

@@ -1,5 +1,4 @@
 import { TaskList } from './taskList';
-import {Task} from './taskObj'
 
 interface ProjectList{
     list: TaskList[];
@@ -13,8 +12,6 @@ const ListOfProjects: ProjectList = {
     list: [],
     setProject(project){
         this.list.push(project);
-        console.log(this.list);
-        
     },
     remove(id){
         if(this.list.length > 1){
