@@ -6,11 +6,11 @@ import { clearSectionContent, clearSectionTitle } from "../clearSection";
 
 function renderAsideProject(project: TaskList, mainContainer:Element){
     const container = document.createElement('div');
-    container.classList.add('menu-button');
+    container.classList.add('single-project-container')
 
     const mainButton = document.createElement('button');
     tabProjectListner(mainButton, project);
-    
+    mainButton.classList.add('project-button');
 
 
     if ((project.id!=undefined)&&project.title){
@@ -20,8 +20,8 @@ function renderAsideProject(project: TaskList, mainContainer:Element){
         const title = createTitle(project.title);
         const button = createDeleteButton(container, project.id);
         
+        mainButton.appendChild(title);
         container.appendChild(mainButton);
-        container.appendChild(title);
         container.appendChild(button);
     }
 
@@ -38,6 +38,7 @@ function createDeleteButton(container:Element, project_id:number):Element{
     const button = document.createElement('button');
 
     button.classList.add('done-button');
+    button.classList.add('delete-project');
     button.innerHTML=`<img src="${Delete}">`;
 
     button.addEventListener('click',()=>{

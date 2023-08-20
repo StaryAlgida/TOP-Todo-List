@@ -13,7 +13,7 @@ function addProject(){
 
 function addProjectListner(button:Element, container:Element):void{
     button.addEventListener('click',()=>{
-        container.innerHTML = `<input type="text" name="" id="project-title">
+        container.innerHTML = `<input type="text" maxlength="15" id="project-title">
         <div>
             <button id="p-add">Add</button>
             <button id="p-cencle">Cencle</button>

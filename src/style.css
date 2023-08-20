@@ -147,3 +147,42 @@ section{
 .done-button img{
     width: 30px;
 }
+
+.project-button{
+    padding: 5px 20px 5px 20px;
+
+    display: flex;
+    align-items: center;
+    width: 145px;
+    height: 35px;
+
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.delete-project{
+    margin-top: -20px;
+}
+
+#project-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.single-project-container{
+    display: flex;
+    align-items: flex-end;
+
+    background-color: white;
+
+    width: 170px;
+    padding-right: 5px;
+    transition: 0.3s;
+}
+
+.single-project-container:hover{
+    background-color: rgb(230, 255, 184);
+
+    border-radius: 10px;
+}
